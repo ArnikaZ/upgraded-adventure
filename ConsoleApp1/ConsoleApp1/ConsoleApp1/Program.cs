@@ -23,12 +23,23 @@ namespace ConsoleApp1
             Console.ReadKey();
         }
 
-        public static void PoliczWybraneZnaki(char[] znaki)
+        public static Dictionary<char, int> HistogramZWybranymiZnakami(string lancuchWejsciowy, char[] znaki)
         {
+            Dictionary<char, int> histogram = Program.Histogram(lancuchWejsciowy);
+            Dictionary<char, int> histogramOutput = new Dictionary<char, int>();
 
+            foreach (var kvp in histogram)
+            {
+                if (znaki.Contains(kvp.Key))
+                {
+                    histogramOutput.Add(kvp.Key, kvp.Value);
+                }
+            }
+
+            return histogramOutput;
         }
 
-        public static Dictionary<char, int> Histogram(string lancuchWejsciowy) // generuje histogram
+        public static Dictionary<char, int> Histogram(string lancuchWejsciowy)
         {
             Dictionary<char, int> histogram = new Dictionary<char, int>();
 
