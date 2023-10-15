@@ -88,33 +88,14 @@ namespace ConsoleApp1
 
 
             Program.WyswietlHistogram(lancuchWejsciowy);
-
-            // pobiera litery i zamienia je w tablice charow
-            Console.Write("Podaj po przecinku wybrane litery: ");
-            string[] znakiStringArray = Console.ReadLine().Split(',');
-            char[] znakiCharArray = new char[znakiStringArray.Length];
-
-            for (int i = 0; i < znakiStringArray.Length; i++)
-            {
-                znakiCharArray[i] = Char.Parse(znakiStringArray[i].Trim());
-            }
-
-
-            // wyswietla histogram z wybranymi znakami
-            Dictionary<char, int> histogramZWybranymiZnakami = Program.HistogramZWybranymiZnakami(lancuchWejsciowy, znakiCharArray);
-
-            foreach (var kvp in histogramZWybranymiZnakami)
-            {
-                Console.WriteLine($"{kvp.Key}: {kvp.Value}");
-            }
-            Console.WriteLine();
-
-            Console.ReadKey();
+            Program.WyswietlHistogramZWybranymiZnakami(lancuchWejsciowy);
+            
         }
         static void OdczytajTekstZpliku()
         {
             Console.WriteLine("Podaj ścieżkę pliku");
             string plik = Console.ReadLine();
+            plik=plik.Replace("\"","");
             Console.Clear();
             
             try
@@ -129,28 +110,9 @@ namespace ConsoleApp1
 
                     
                     Program.WyswietlHistogram(lancuchWejsciowy);
+                    Program.WyswietlHistogramZWybranymiZnakami(lancuchWejsciowy);
 
-                    // pobiera litery i zamienia je w tablice charow
-                    Console.Write("Podaj po przecinku wybrane litery: ");
-                    string[] znakiStringArray = Console.ReadLine().Split(',');
-                    char[] znakiCharArray = new char[znakiStringArray.Length];
-
-                    for (int i = 0; i < znakiStringArray.Length; i++)
-                    {
-                        znakiCharArray[i] = Char.Parse(znakiStringArray[i].Trim());
-                    }
-
-                    // wyswietla histogram z wybranymi znakami
-                    Dictionary<char, int> histogramZWybranymiZnakami = Program.HistogramZWybranymiZnakami(lancuchWejsciowy, znakiCharArray);
-
-                    foreach (var kvp in histogramZWybranymiZnakami)
-                    {
-                        Console.WriteLine($"{kvp.Key}: {kvp.Value}");
-                    }
-                    
-                    Console.WriteLine();
-
-                    Console.ReadKey();
+                   
                 }
             }
             catch(IOException ex)
@@ -161,7 +123,7 @@ namespace ConsoleApp1
             {
                 Console.WriteLine(ex.Message);
             }
-            Console.ReadKey();
+            
         }
 
     }

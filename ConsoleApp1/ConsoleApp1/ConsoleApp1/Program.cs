@@ -13,7 +13,9 @@ namespace ConsoleApp1
         {
             Menu.StartMenu();
             
+
         }
+
 
         public static void WyswietlHistogram(string lancuchWejsciowy)
         {
@@ -25,6 +27,30 @@ namespace ConsoleApp1
             Console.WriteLine($"{kvp.Key}: {kvp.Value}");
             }
              Console.WriteLine();
+        }
+        public static void WyswietlHistogramZWybranymiZnakami(string lancuchWejsciowy)
+        {
+            // pobiera litery i zamienia je w tablice charow
+            Console.Write("Podaj po przecinku wybrane litery: ");
+            string[] znakiStringArray = Console.ReadLine().Split(',');
+            char[] znakiCharArray = new char[znakiStringArray.Length];
+
+            for (int i = 0; i < znakiStringArray.Length; i++)
+            {
+                znakiCharArray[i] = Char.Parse(znakiStringArray[i].Trim());
+            }
+
+
+            // wyswietla histogram z wybranymi znakami
+            Dictionary<char, int> histogramZWybranymiZnakami = Program.HistogramZWybranymiZnakami(lancuchWejsciowy, znakiCharArray);
+
+            foreach (var kvp in histogramZWybranymiZnakami)
+            {
+                Console.WriteLine($"{kvp.Key}: {kvp.Value}");
+            }
+            Console.WriteLine();
+
+            Console.ReadKey();
         }
        
         
