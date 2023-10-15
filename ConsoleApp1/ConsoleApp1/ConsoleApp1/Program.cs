@@ -35,7 +35,7 @@ namespace ConsoleApp1
 
             for (int i = 0; i < zNaKiStRiNgArRaY.Length; i++)
             {
-                zNaKiChArArRaY[i] = Char.Parse(zNaKiStRiNgArRaY[i].Trim());
+                zNaKiChArArRaY[i] = Char.Parse(zNaKiStRiNgArRaY[i].Trim().ToLower());
             }
 
 
