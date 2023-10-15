@@ -11,18 +11,25 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            Console.Write("Podaj łańcuch znaków: ");
-            string lancuchWejsciowy = Console.ReadLine();
+            Menu.StartMenu();
+            
 
+        }
+
+
+        public static void WyswietlHistogram(string lancuchWejsciowy)
+        {
             // wyswietla histogram
             Dictionary<char, int> histogram = Program.Histogram(lancuchWejsciowy);
 
             foreach (var kvp in histogram)
             {
-                Console.WriteLine($"{kvp.Key}: {kvp.Value}");
+            Console.WriteLine($"{kvp.Key}: {kvp.Value}");
             }
-            Console.WriteLine();
-
+             Console.WriteLine();
+        }
+        public static void WyswietlHistogramZWybranymiZnakami(string lancuchWejsciowy)
+        {
             // pobiera litery i zamienia je w tablice charow
             Console.Write("Podaj po przecinku wybrane litery: ");
             string[] znakiStringArray = Console.ReadLine().Split(',');
@@ -32,6 +39,7 @@ namespace ConsoleApp1
             {
                 znakiCharArray[i] = Char.Parse(znakiStringArray[i].Trim());
             }
+
 
             // wyswietla histogram z wybranymi znakami
             Dictionary<char, int> histogramZWybranymiZnakami = Program.HistogramZWybranymiZnakami(lancuchWejsciowy, znakiCharArray);
@@ -44,7 +52,8 @@ namespace ConsoleApp1
 
             Console.ReadKey();
         }
-
+       
+        
         public static Dictionary<char, int> HistogramZWybranymiZnakami(string lancuchWejsciowy, char[] znaki)
         {
             Dictionary<char, int> histogram = Program.Histogram(lancuchWejsciowy);
