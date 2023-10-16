@@ -11,40 +11,38 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            Menu.StartMenu();
-            
-
+            Menu.StArTmEnU();
         }
 
 
-        public static void WyswietlHistogram(string lancuchWejsciowy)
+        public static void WySwIeTlHiStOgRaM(string lAnCuChWeJsCiOwY)
         {
             // wyswietla histogram
-            Dictionary<char, int> histogram = Program.Histogram(lancuchWejsciowy);
+            Dictionary<char, int> hIsToGrAm = Program.HiStOgRaM(lAnCuChWeJsCiOwY);
 
-            foreach (var kvp in histogram)
+            foreach (var kvp in hIsToGrAm)
             {
             Console.WriteLine($"{kvp.Key}: {kvp.Value}");
             }
              Console.WriteLine();
         }
-        public static void WyswietlHistogramZWybranymiZnakami(string lancuchWejsciowy)
+        public static void WySwIeTlHiStOgRaMzWyBrAnYmIzNaKaMi(string lAnCuChWeJsCiOwY)
         {
             // pobiera litery i zamienia je w tablice charow
             Console.Write("Podaj po przecinku wybrane litery: ");
-            string[] znakiStringArray = Console.ReadLine().Split(',');
-            char[] znakiCharArray = new char[znakiStringArray.Length];
+            string[] zNaKiStRiNgArRaY = Console.ReadLine().Split(',');
+            char[] zNaKiChArArRaY = new char[zNaKiStRiNgArRaY.Length];
 
-            for (int i = 0; i < znakiStringArray.Length; i++)
+            for (int i = 0; i < zNaKiStRiNgArRaY.Length; i++)
             {
-                znakiCharArray[i] = Char.Parse(znakiStringArray[i].Trim());
+                zNaKiChArArRaY[i] = Char.Parse(zNaKiStRiNgArRaY[i].Trim().ToLower());
             }
 
 
             // wyswietla histogram z wybranymi znakami
-            Dictionary<char, int> histogramZWybranymiZnakami = Program.HistogramZWybranymiZnakami(lancuchWejsciowy, znakiCharArray);
+            Dictionary<char, int> hIsToGrAmZwYbRaNyMiZnAkAmI = Program.HiStOgRaMzWyBrAnYmIzNaKaMi(lAnCuChWeJsCiOwY, zNaKiChArArRaY);
 
-            foreach (var kvp in histogramZWybranymiZnakami)
+            foreach (var kvp in hIsToGrAmZwYbRaNyMiZnAkAmI)
             {
                 Console.WriteLine($"{kvp.Key}: {kvp.Value}");
             }
@@ -54,27 +52,27 @@ namespace ConsoleApp1
         }
        
         
-        public static Dictionary<char, int> HistogramZWybranymiZnakami(string lancuchWejsciowy, char[] znaki)
+        public static Dictionary<char, int> HiStOgRaMzWyBrAnYmIzNaKaMi(string lAnCuChWeJsCiOwY, char[] zNaKi)
         {
-            Dictionary<char, int> histogram = Program.Histogram(lancuchWejsciowy);
-            Dictionary<char, int> histogramOutput = new Dictionary<char, int>();
+            Dictionary<char, int> hIsToGrAm = Program.HiStOgRaM(lAnCuChWeJsCiOwY);
+            Dictionary<char, int> hIsToGrAmOuTpUt = new Dictionary<char, int>();
 
-            foreach (var kvp in histogram)
+            foreach (var kvp in hIsToGrAm)
             {
-                if (znaki.Contains(kvp.Key))
+                if (zNaKi.Contains(kvp.Key))
                 {
-                    histogramOutput.Add(kvp.Key, kvp.Value);
+                    hIsToGrAmOuTpUt.Add(kvp.Key, kvp.Value);
                 }
             }
 
-            return histogramOutput;
+            return hIsToGrAmOuTpUt;
         }
 
-        public static Dictionary<char, int> Histogram(string lancuchWejsciowy)
+        public static Dictionary<char, int> HiStOgRaM(string lAnCuChWeJsCiOwY)
         {
-            Dictionary<char, int> histogram = new Dictionary<char, int>();
+            Dictionary<char, int> hIsToGrAm = new Dictionary<char, int>();
 
-            foreach (char c in lancuchWejsciowy.ToLower())
+            foreach (char c in lAnCuChWeJsCiOwY.ToLower())
             {
                 // omijamy spacje
                 if (c.Equals(' '))
@@ -82,14 +80,14 @@ namespace ConsoleApp1
                     continue;
                 }
 
-                if (histogram.ContainsKey(c))
+                if (hIsToGrAm.ContainsKey(c))
                 {
-                    histogram[c]++;
+                    hIsToGrAm[c]++;
                 }
-                else histogram.Add(c, 1);
+                else hIsToGrAm.Add(c, 1);
             }
 
-            return histogram;
+            return hIsToGrAm;
         }
     }
 }

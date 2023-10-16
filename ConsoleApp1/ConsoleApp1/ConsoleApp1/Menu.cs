@@ -11,106 +11,106 @@ namespace ConsoleApp1
 {
     internal static class Menu
     {
-        static string[] pozycjeMenu = { "Odczytaj tekst z klawiatury", "Odczytaj tekst z pliku", "Wyjdź" };
-        static int aktywnaPozycjaMenu = 0;
+        static string[] pOzYcJeMeNu = { "Odczytaj tekst z klawiatury", "Odczytaj tekst z pliku", "Wyjdź" };
+        static int aKtYwNaPoZyCjAmEnU = 0;
 
-        public static void StartMenu()
+        public static void StArTmEnU()
         {
             Console.Title = "Zlicz liczbę poszczególnych liter";
             Console.CursorVisible = false;
             while (true)
             {
-                PokazMenu();
-                WybieranieOpcji();
-                UruchomOpcje();
+                PoKaZmEnU();
+                WyBiErAnIeOpCjI();
+                UrUcHoMoPcJe();
             }
         }
-        static void PokazMenu()
+        static void PoKaZmEnU()
         {
             Console.BackgroundColor = ConsoleColor.Gray;
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Black;
             Console.WriteLine("Wybierz opcję");
             Console.WriteLine();
-            for(int i = 0; i < pozycjeMenu.Length; i++)
+            for(int i = 0; i < pOzYcJeMeNu.Length; i++)
             {
-                if (i == aktywnaPozycjaMenu)
+                if (i == aKtYwNaPoZyCjAmEnU)
                 {
                     Console.BackgroundColor = ConsoleColor.Blue;
-                    Console.WriteLine("{0,-35}", pozycjeMenu[i]);
+                    Console.WriteLine("{0,-35}", pOzYcJeMeNu[i]);
                     Console.BackgroundColor = ConsoleColor.Gray; 
                     
                 }
                 else
                 {
-                    Console.WriteLine(pozycjeMenu[i]);
+                    Console.WriteLine(pOzYcJeMeNu[i]);
                 }
             }
         }
-        static void WybieranieOpcji()
+        static void WyBiErAnIeOpCjI()
         {
             do
             {
-                ConsoleKeyInfo klawisz = Console.ReadKey();
-                if (klawisz.Key == ConsoleKey.UpArrow)
+                ConsoleKeyInfo kLaWiSz = Console.ReadKey();
+                if (kLaWiSz.Key == ConsoleKey.UpArrow)
                 {
-                    aktywnaPozycjaMenu = (aktywnaPozycjaMenu > 0) ? aktywnaPozycjaMenu - 1 : pozycjeMenu.Length - 1;
-                    PokazMenu();
+                    aKtYwNaPoZyCjAmEnU = (aKtYwNaPoZyCjAmEnU > 0) ? aKtYwNaPoZyCjAmEnU - 1 : pOzYcJeMeNu.Length - 1;
+                    PoKaZmEnU();
                 }
-                else if (klawisz.Key == ConsoleKey.DownArrow)
+                else if (kLaWiSz.Key == ConsoleKey.DownArrow)
                 {
-                    aktywnaPozycjaMenu = (aktywnaPozycjaMenu < (pozycjeMenu.Length - 1)) ? aktywnaPozycjaMenu + 1 : 0;
-                    PokazMenu();
+                    aKtYwNaPoZyCjAmEnU = (aKtYwNaPoZyCjAmEnU < (pOzYcJeMeNu.Length - 1)) ? aKtYwNaPoZyCjAmEnU + 1 : 0;
+                    PoKaZmEnU();
                 }
-                else if (klawisz.Key == ConsoleKey.Escape)
+                else if (kLaWiSz.Key == ConsoleKey.Escape)
                 {
-                    aktywnaPozycjaMenu = pozycjeMenu.Length - 1;
+                    aKtYwNaPoZyCjAmEnU = pOzYcJeMeNu.Length - 1;
                     break;
                 }
-                else if (klawisz.Key == ConsoleKey.Enter)
+                else if (kLaWiSz.Key == ConsoleKey.Enter)
                     break;
             }
             while (true);
         }
-        static void UruchomOpcje()
+        static void UrUcHoMoPcJe()
         {
-            switch (aktywnaPozycjaMenu)
+            switch (aKtYwNaPoZyCjAmEnU)
             {
-                case 0:Console.Clear();OdczytajTekstZklawiatury();break;
-                case 1: Console.Clear();OdczytajTekstZpliku();break;
+                case 0:Console.Clear();OdCzYtAjTeKsTzKlAwIaTuRy();break;
+                case 1: Console.Clear();OdCzYtAjTeKsTzPlIkU();break;
                 case 2:Environment.Exit(0); break;
             }
         }
-        public static void OdczytajTekstZklawiatury()
+        public static void OdCzYtAjTeKsTzKlAwIaTuRy()
         {
             Console.Write("Podaj łańcuch znaków: ");
-            string lancuchWejsciowy = Console.ReadLine();
+            string lAnCuChWeJsCiOwY = Console.ReadLine();
 
 
-            Program.WyswietlHistogram(lancuchWejsciowy);
-            Program.WyswietlHistogramZWybranymiZnakami(lancuchWejsciowy);
+            Program.WySwIeTlHiStOgRaM(lAnCuChWeJsCiOwY);
+            Program.WySwIeTlHiStOgRaMzWyBrAnYmIzNaKaMi(lAnCuChWeJsCiOwY);
             
         }
-        static void OdczytajTekstZpliku()
+        static void OdCzYtAjTeKsTzPlIkU()
         {
             Console.WriteLine("Podaj ścieżkę pliku");
-            string plik = Console.ReadLine();
-            plik=plik.Replace("\"","");
+            string pLiK = Console.ReadLine();
+            pLiK=pLiK.Replace("\"","");
             Console.Clear();
             
             try
             {
-                if (File.Exists(plik))
+                if (File.Exists(pLiK))
                 {
-                    string lancuchWejsciowy;
-                    using (StreamReader sr = new StreamReader(plik))
+                    string lAnCuChWeJsCiOwY;
+                    using (StreamReader sr = new StreamReader(pLiK))
                     {
-                        lancuchWejsciowy = sr.ReadToEnd();
+                        lAnCuChWeJsCiOwY = sr.ReadToEnd();
                     }
 
                     
-                    Program.WyswietlHistogram(lancuchWejsciowy);
-                    Program.WyswietlHistogramZWybranymiZnakami(lancuchWejsciowy);
+                    Program.WySwIeTlHiStOgRaM(lAnCuChWeJsCiOwY);
+                    Program.WySwIeTlHiStOgRaMzWyBrAnYmIzNaKaMi(lAnCuChWeJsCiOwY);
 
                    
                 }
